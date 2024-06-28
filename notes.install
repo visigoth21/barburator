@@ -1,0 +1,21 @@
+npm i @libsql/client drizzle-orm oslo dotenv
+
+npm install -D drizzle-kit
+npm i -D drizzle-kit
+npm install drizzle-kit studio
+npm install milligram
+npm install uuid
+npm i --save-dev @types/uuid
+npm install -D @ngneat/falso
+npm install typescript --save-dev
+
+
+//npm i -D drizzle-studio
+// ??npm i --save-dev @types/libsql
+
+barburator-dev
+
+libsql://barburator-dev-visigoth21.turso.io
+
+token =
+eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MTk0MTcyMTgsImlkIjoiMzRlZWFkZTItMWQ3Ny00OWM0LTg3MzktYzNmYTRkZDBiMmZmIn0.cN5QUMrh2XlZZbTHbGNyOMOIJD6zLvwRKOFqdopC052PwKXI6R_YoIoZlvNUyAnwgIwvv3JyDlwDjav_XQFGDg

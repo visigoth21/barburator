@@ -1,0 +1,51 @@
+{
+	"name": "barburator",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"generate-migrations:db": "drizzle-kit generate --config=src/lib/server/db/drizzle.config.ts",
+		"push:db": "drizzle-kit push --config=src/lib/server/db/drizzle.config.ts",
+		"migrate:db": "tsx src/lib/server/db/migrate.ts",
+		"studio": "drizzle-kit studio",
+		"db:seed": "node --loader esbuild-register/loader -r esbuild-register .src/lib/server/db/seed.ts"
+	},
+	"devDependencies": {
+		"@ngneat/falso": "^7.2.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/eslint": "^8.56.7",
+		"@types/uuid": "^10.0.0",
+		"drizzle-kit": "^0.22.7",
+		"eslint": "^9.0.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.36.0",
+		"globals": "^15.0.0",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"svelte": "^5.0.0-next.1",
+		"svelte-check": "^3.6.0",
+		"tslib": "^2.4.1",
+		"tsx": "^4.15.7",
+		"typescript": "^5.5.2",
+		"typescript-eslint": "^8.0.0-alpha.20",
+		"vite": "^5.0.3"
+	},
+	"type": "module",
+	"dependencies": {
+		"@libsql/client": "^0.7.0",
+		"dotenv": "^16.4.5",
+		"drizzle-orm": "^0.31.2",
+		"milligram": "^1.4.1",
+		"oslo": "^1.2.1",
+		"studio": "^0.13.5",
+		"uuid": "^10.0.0"
+	}
+}
