@@ -4,7 +4,7 @@ export const load = async ({ parent }) => {
 	const { localsUser } = await parent();
 
 	if (!localsUser) {
-		redirect(302, '../login');
+		redirect(302, '../../login');
 	}
 
 	return {};
