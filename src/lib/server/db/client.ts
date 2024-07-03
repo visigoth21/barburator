@@ -1,13 +1,10 @@
-// src/lib/server/db/client.ts
-
+import { DB_URL, DB_TOKEN } from '$env/static/private';
 import { createClient } from '@libsql/client';
 import { drizzle } from 'drizzle-orm/libsql';
-import * as dotenv from 'dotenv';
-import * as schema from "./schema";
 
-dotenv.config();
+const client = createClient({ url: DB_URL, authToken: DB_TOKEN });
 
-const client = createClient({url: process.env.DB_URL, authToken: process.env.DB_TOKEN});
-const db = drizzle(client, { schema });
+const db = drizzle(client);
 
 export { client, db };
+

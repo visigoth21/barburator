@@ -1,9 +1,6 @@
-// src/lib/server/db/schema.ts
-
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-//import { generateRandomId } from '../utils';
-import { v6 as uuidv6 } from 'uuid';
-
+import { generateId } from 'lucia';
+import { generateRandomId } from '../utils';
 
 const timestamp = {
 	createdAt: integer('created_at', { mode: 'timestamp' })
@@ -14,12 +11,34 @@ const timestamp = {
 		.$defaultFn(() => new Date())
 };
 
+const users = sqliteTable('users', {
+	...timestamp,
+	id: text('id')
+		.primaryKey()
+		.notNull()
+		.$defaultFn(() => generateId(15)),
+	email: text('email').unique().notNull(),
+	hashedPassword: text('hashed_password').notNull()
+});
+
+const sessions = sqliteTable('sessions', {
+	...timestamp,
+	id: text('id')
+		.primaryKey()
+		.notNull()
+		.$defaultFn(() => generateId(15)),
+	expiresAt: integer('expires_at').notNull(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => users.id)
+});
+
 const books = sqliteTable('books', {
 	...timestamp,
 	id: text('id')
 		.primaryKey()
 		.notNull()
-		.$defaultFn(() => uuidv6()),
+		.$defaultFn(() => generateRandomId()),
 	publicationDate: integer('publication_date', { mode: 'timestamp' }).notNull(),
 	title: text('title').notNull(),
 	author: text('author').notNull(),
@@ -28,4 +47,4 @@ const books = sqliteTable('books', {
 
 type InsertBookParams = typeof books.$inferInsert;
 
-export { books, type InsertBookParams };
+export { books, sessions, users, type InsertBookParams };

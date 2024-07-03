@@ -1,10 +1,21 @@
+import { createClient } from '@libsql/client';
+import * as dotenv from 'dotenv';
+import { drizzle } from 'drizzle-orm/libsql';
 import { migrate } from 'drizzle-orm/libsql/migrator';
-import { db } from './client';
 
-try {
-	migrate(db, { migrationsFolder: 'src/lib/server/db/migrations' });
-	console.log('Migrations applied');
-} catch (error) {
-	console.error('Error migrating database:', error);
-	throw error;
-}
+dotenv.config();
+
+const dbClient = createClient({
+	url: process.env.SQLITE_DB_URL as string,
+	authToken: process.env.TURSO_AUTH_TOKEN as string
+});
+const drizzleClient = drizzle(dbClient);
+
+await migrate(drizzleClient, { migrationsFolder: 'src/lib/server/db/migrations' })
+	.then(() => {
+		console.log('Migrations completed');
+		process.exit(0);
+	})
+	.catch((err) => {
+		throw err;
+	});

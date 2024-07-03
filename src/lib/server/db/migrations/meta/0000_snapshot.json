@@ -1,11 +1,11 @@
 {
-  "version": "6",
+  "version": "5",
   "dialect": "sqlite",
-  "id": "a49e9658-fbad-43e1-a4ba-f41d3d889130",
+  "id": "fcc073cb-2c0a-431e-ab7c-9faa7e49484b",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "books": {
-      "name": "books",
+    "sessions": {
+      "name": "sessions",
       "columns": {
         "created_at": {
           "name": "created_at",
@@ -28,40 +28,84 @@
           "notNull": true,
           "autoincrement": false
         },
-        "publication_date": {
-          "name": "publication_date",
+        "expires_at": {
+          "name": "expires_at",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "title": {
-          "name": "title",
+        "user_id": {
+          "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
-        },
-        "author": {
-          "name": "author",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "isbn": {
-          "name": "isbn",
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sessions_user_id_users_id_fk": {
+          "name": "sessions_user_id_users_id_fk",
+          "tableFrom": "sessions",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "created_at": {
+          "name": "created_at",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "hashed_password": {
+          "name": "hashed_password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
           "autoincrement": false
         }
       },
       "indexes": {
-        "books_isbn_unique": {
-          "name": "books_isbn_unique",
+        "users_email_unique": {
+          "name": "users_email_unique",
           "columns": [
-            "isbn"
+            "email"
           ],
           "isUnique": true
         }
@@ -76,8 +120,5 @@
     "schemas": {},
     "tables": {},
     "columns": {}
-  },
-  "internal": {
-    "indexes": {}
   }
 }

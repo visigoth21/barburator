@@ -1,0 +1,27 @@
+.notice {
+	margin: 1rem 0;
+	padding: 1rem;
+	width: 30rem;
+}
+
+.notice-error {
+	background-color: #fdd;
+	border: 1px solid #c00;
+	color: #c00;
+}
+
+#container {
+	background-color: rgb(154, 145, 145);
+	overflow: hidden;
+	width: 200px;
+  }
+  
+  #inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .child {
+	margin: 0 10px;
+  }

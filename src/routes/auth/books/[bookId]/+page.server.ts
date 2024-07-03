@@ -1,11 +1,14 @@
 // src/routes/books/[bookId]/+page.server.ts
 
 import { getBookCoverId } from '$lib/server/books';
-import { getBookById } from '$lib/server/db/books';
+import { getBookById } from '$lib/server/db/models/books';
 import { error, redirect } from '@sveltejs/kit';
 
 
 export const load = async ({ params }) => {
+
+
+
 	const { bookId } = params;
 	const book = await getBookById(bookId);
 
@@ -20,7 +23,7 @@ export const load = async ({ params }) => {
 		coverIdPromise
 	};
 };
-import { editBookById } from '$lib/server/db/books';
+import { editBookById } from '$lib/server/db/models/books';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {
@@ -63,5 +66,5 @@ export const actions = {
 	}
 };
 
-import { deleteBookById } from '$lib/server/db/books';
+import { deleteBookById } from '$lib/server/db/models/books';
 
