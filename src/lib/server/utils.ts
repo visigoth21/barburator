@@ -1,11 +1,11 @@
-//import { v6 as uuidv6 } from 'uuid';
-//export const generateRandomId = () => uuidv6();
+import { v4 as uuidv4 } from 'uuid';
+export const generateRandomId = () => uuidv4();
 
-import { generateRandomString, alphabet } from "oslo/crypto";
+// import { generateRandomString, alphabet } from "oslo/crypto";
 
-export const generateRandomId = () => generateRandomString(10, alphabet("a-z", "0-9"));
+// export const generateRandomId = () => generateRandomString(10, alphabet("a-z", "0-9"));
 
-type GetReadableDateParams = {
-    date: Date;
-    options?: Intl.DateTimeFormatOptions;
-};
+// type GetReadableDateParams = {
+//     date: Date;
+//     options?: Intl.DateTimeFormatOptions;
+// };

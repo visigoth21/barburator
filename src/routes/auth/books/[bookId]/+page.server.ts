@@ -13,7 +13,6 @@ export const load = async ({ params, parent }) => {
 		redirect(302, '../../login');
 	}
 
-
 	const { bookId } = params;
 	const book = await getBookById(bookId);
 
