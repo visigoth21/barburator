@@ -5,8 +5,13 @@ import { getBookById } from '$lib/server/db/models/books';
 import { error, redirect } from '@sveltejs/kit';
 
 
-export const load = async ({ params }) => {
+export const load = async ({ params, parent }) => {
 
+	const { localsUser } = await parent();
+
+	if (!localsUser) {
+		redirect(302, '../../login');
+	}
 
 
 	const { bookId } = params;
