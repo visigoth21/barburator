@@ -1,6 +1,7 @@
 import { createNewUser, getUserByEmail } from '$lib/server/db/models/users';
 import { fail, redirect } from '@sveltejs/kit';
-import { generateId } from 'lucia';
+//import { generateId } from 'lucia';
+import { generateRandomId } from '../../lib/server/utils';
 import { Argon2id } from 'oslo/password';
 
 export const load = async ({ parent }) => {
@@ -25,7 +26,7 @@ export const actions = {
 			return fail(400, { error: 'Email and password are required' });
 		}
 
-		const userId = generateId(15);
+		const userId = generateRandomId();
 		const hashedPassword = await new Argon2id().hash(password);
 
 		// Check if the email already exists

@@ -1,4 +1,4 @@
-// src/lib/server/db/books.ts
+// src/lib/server/db/models/books.ts
 
 import { db } from '$lib/server/db/client';
 import { books, type InsertBookParams } from '$lib/server/db/schema';

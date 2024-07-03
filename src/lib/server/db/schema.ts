@@ -15,21 +15,21 @@ const users = sqliteTable('users', {
 	...timestamp,
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	email: text('email').unique().notNull(),
-	hashedPassword: text('hashed_password').notNull(),
-	isLevel1Admin: integer('is_level_1_admin', { mode: 'boolean' }).default(true),
-	isLevel2Admin: integer('is_level_2_admin', { mode: 'boolean' }).default(false),
-	isCustomer: integer('is_customer', { mode: 'boolean' }).default(false),
-	firstName: text('first_name').notNull(),
-	lastName: text('last_name').notNull(),	
-	middleName: text('middle_name'),
-	phoneNumber: text('phone_number'),
-	address: text('address'),
-	address2: text('address2'),
-	city: text('city'),
-	state: text('state'),
-	zip: text('zip'),
-	companyId: text('company_id').default(null),
-	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+hashedPassword: text('hashed_password').notNull()
+// 	isLevel1Admin: integer('is_level_1_admin', { mode: 'boolean' }).default(true),
+// 	isLevel2Admin: integer('is_level_2_admin', { mode: 'boolean' }).default(false),
+// 	isCustomer: integer('is_customer', { mode: 'boolean' }).default(false),
+// 	firstName: text('first_name'),
+// 	lastName: text('last_name'),	
+// 	middleName: text('middle_name'),
+// 	phoneNumber: text('phone_number'),
+// 	address: text('address'),
+// 	address2: text('address2'),
+// 	city: text('city'),
+// 	state: text('state'),
+// 	zip: text('zip'),
+// 	companyId: text('company_id'),
+// 	isActive: integer('is_active', { mode: 'boolean' }).default(true)
 });
 
 const companies = sqliteTable('companies', {
