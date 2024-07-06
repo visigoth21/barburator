@@ -66,7 +66,7 @@ export const actions = {
 		const { bookId } = params;
 		await deleteBookById(bookId);
 
-		throw redirect(302, '/books');
+		throw redirect(302, '/auth/books');
 	}
 };
 

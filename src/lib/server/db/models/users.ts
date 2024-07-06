@@ -3,6 +3,7 @@ import { users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 
 const getUserByEmail = async (email: string) => {
+	//console.log('return: ', await db.select().from(users).where(eq(users.email, email)).get());
 	return await db.select().from(users).where(eq(users.email, email)).get();
 };
 

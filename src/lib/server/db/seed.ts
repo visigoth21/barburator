@@ -21,4 +21,4 @@ const generateRsndomBooks = async (count: number) => {
 	}
 };
 
-await generateRsndomBooks(20);
+await generateRsndomBooks(50);

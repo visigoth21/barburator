@@ -15,21 +15,21 @@ const users = sqliteTable('users', {
 	...timestamp,
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	email: text('email').unique().notNull(),
-hashedPassword: text('hashed_password').notNull()
-// 	isLevel1Admin: integer('is_level_1_admin', { mode: 'boolean' }).default(true),
-// 	isLevel2Admin: integer('is_level_2_admin', { mode: 'boolean' }).default(false),
-// 	isCustomer: integer('is_customer', { mode: 'boolean' }).default(false),
-// 	firstName: text('first_name'),
-// 	lastName: text('last_name'),	
-// 	middleName: text('middle_name'),
-// 	phoneNumber: text('phone_number'),
-// 	address: text('address'),
-// 	address2: text('address2'),
-// 	city: text('city'),
-// 	state: text('state'),
-// 	zip: text('zip'),
-// 	companyId: text('company_id'),
-// 	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+	hashedPassword: text('hashed_password').notNull(),
+ 	isLevel1Admin: integer('is_level_1_admin', { mode: 'boolean' }).default(true),
+ 	isLevel2Admin: integer('is_level_2_admin', { mode: 'boolean' }).default(false),
+ 	isCustomer: integer('is_customer', { mode: 'boolean' }).default(false),
+ 	firstName: text('first_name'),
+ 	lastName: text('last_name'),	
+ 	middleName: text('middle_name'),
+ 	phoneNumber: text('phone_number'),
+ 	address: text('address'),
+ 	address2: text('address2'),
+ 	city: text('city'),
+ 	state: text('state'),
+ 	zip: text('zip'),
+ 	company_id: text('company_id'),
+ 	isActive: integer('is_active', { mode: 'boolean' }).default(true)
 });
 
 const companies = sqliteTable('companies', {
@@ -59,7 +59,7 @@ const customers = sqliteTable('customers', {
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	companyId: text('company_id').notNull().references(() => companies.id),
+	company_id: text('company_id').notNull().references(() => companies.id),
 	isActive: integer('is_active', { mode: 'boolean' }).default(true) 
 });
 
@@ -75,8 +75,8 @@ const properties = sqliteTable('properties', {
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	customerId: text('customer_id').notNull().references(() => customers.id),
-	companyId: text('company_id').notNull().references(() => companies.id),
+	customer_id: text('customer_id').notNull().references(() => customers.id),
+	company_id: text('company_id').notNull().references(() => companies.id),
 	isActive: integer('is_active', { mode: 'boolean' }).default(true) 
 });
 
@@ -86,7 +86,8 @@ const sessions = sqliteTable('sessions', {
 	expiresAt: integer('expires_at').notNull(),
 	userId: text('user_id')
 		.notNull()
-		.references(() => users.id)
+		.references(() => users.id),
+	company_id: text('company_id')
 });
 
 const books = sqliteTable('books', {
