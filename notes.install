@@ -17,5 +17,6 @@ barburator-dev
 
 libsql://barburator-dev-visigoth21.turso.io
 
-token =
-eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MTk0MTcyMTgsImlkIjoiMzRlZWFkZTItMWQ3Ny00OWM0LTg3MzktYzNmYTRkZDBiMmZmIn0.cN5QUMrh2XlZZbTHbGNyOMOIJD6zLvwRKOFqdopC052PwKXI6R_YoIoZlvNUyAnwgIwvv3JyDlwDjav_XQFGDg
+DB_URL = "libsql://barburator-dev-visigoth21.turso.io"
+DB_TOKEN = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MjAwMzM3MTAsImlkIjoiZWIwZmFjYzgtYjc5My00MTYzLTg3OWUtZDU0YWZjMmQ0YmE5In0.I0lNHzo5o1_aNwTiqH7hDuLwFrAPm-DuZ6w5tiJw_LCBz8jZzAbRbzljNEZXiQnDCOPeJOJDFjT0KBc0RDcJBg"
+DB_NAME = "barburator-dev"
