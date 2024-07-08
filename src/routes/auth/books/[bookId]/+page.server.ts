@@ -1,5 +1,7 @@
 // src/routes/books/[bookId]/+page.server.ts
 
+/** @type {import('.$types').PageLoad} */
+
 import { getBookCoverId } from '$lib/server/books';
 import { getBookById } from '$lib/server/db/models/books';
 import { error, redirect } from '@sveltejs/kit';

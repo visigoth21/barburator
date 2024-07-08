@@ -6,3 +6,5 @@
 </svelte:head>
 
 <h1>home</h1>
+
+<slot />
