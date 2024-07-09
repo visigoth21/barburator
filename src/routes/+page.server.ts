@@ -1,7 +1,11 @@
 import { lucia } from '$lib/server/auth/lucia';
 import { fail, redirect } from '@sveltejs/kit';
 
-export const load = async () => {};
+export const load = async ({ locals }) => {
+	if (locals.session) {
+		redirect(302, '/auth');
+	}
+};
 
 export const actions = {
 	logout: async ({ cookies, locals }) => {

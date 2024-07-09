@@ -14,14 +14,27 @@
 	background-color: rgb(154, 145, 145);
 	overflow: hidden;
 	width: 200px;
-  }
-  
-  #inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .child {
+}
+
+#inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.child {
 	margin: 0 10px;
-  }
+}
+
+DIV.table {
+	display: table;
+}
+
+FORM.tr,
+DIV.tr {
+	display: table-row;
+}
+
+SPAN.td {
+	display: table-cell;
+}

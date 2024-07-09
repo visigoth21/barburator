@@ -50,6 +50,6 @@ export const actions = {
 			...sessionCookie.attributes
 		});
 
-		redirect(302, '/auth');
+		redirect(302, './auth');
 	}
 };

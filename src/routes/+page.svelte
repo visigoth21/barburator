@@ -2,9 +2,7 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
+	<title>Landing page</title>
 </svelte:head>
 
-<h1>home</h1>
-
-<slot />
+<h1>Landing page</h1>
