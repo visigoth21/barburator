@@ -3,27 +3,28 @@
 	import { page } from '$app/stores';
 
 	//export let data;
+	//console.log($page.url.pathname);
 </script>
 
 <nav>
-	<div id="container">
-		<div id="inner">
-			<div class:active={$page.url.pathname === '/auth'}>
+	<div id="nav-container">
+		<div id="nav-inner">
+			<div class:nav-active={$page.url.pathname === '/auth'}>
 				<a href="/auth">Home</a>
 			</div>
-			<div class:active={$page.url.pathname === '/auth/books'}>
+			<div class:nav-active={$page.url.pathname.includes('/auth/books')}>
 				<a href="/auth/books">Books</a>
 			</div>
-			<div class:active={$page.url.pathname === '/auth/users'}>
+			<div class:nav-active={$page.url.pathname.includes('/auth/users')}>
 				<a href="/auth/users">Users</a>
 			</div>
-			<div class:active={$page.url.pathname === '/auth/companies'}>
+			<div class:nav-active={$page.url.pathname.includes('/auth/companies')}>
 				<a href="/auth/companies">Companies</a>
 			</div>
-			<div class:active={$page.url.pathname === '/auth/properties'}>
+			<div class:nav-active={$page.url.pathname.includes('/auth/properties')}>
 				<a href="/auth/properties">Properties</a>
 			</div>
-			<div class="child">
+			<div class="nav-child">
 				<form action="/?/logout" method="post">
 					<button type="submit">Logout</button>
 				</form>
@@ -35,7 +36,22 @@
 <slot />
 
 <style>
-	.active {
+	#nav-container {
+		background-color: rgb(120, 139, 100);
+		overflow: hidden;
+		width: 600px;
+	}
+
+	#nav-inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.nav-child {
+		margin: 0 10px;
+	}
+	.nav-active {
 		background-color: white;
 	}
 </style>
