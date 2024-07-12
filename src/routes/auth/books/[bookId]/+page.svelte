@@ -16,7 +16,6 @@
 	}
 </script>
 
-
 <dialog open={openEditDialog}>
 	<article>
 		{#if form?.error}
@@ -24,7 +23,7 @@
 		{/if}
 
 		<header>
-			<button aria-label="Close" rel="prev" on:click={() => (openEditDialog = false)}></button>
+			<button aria-label="Close" rel="prev" on:click={() => (openEditDialog = false)}>X</button>
 			<h2>Edit "{book.title}"</h2>
 		</header>
 
@@ -60,8 +59,6 @@
 		</form>
 	</article>
 </dialog>
-
-
 
 <section>
 	<h1>{book.title}</h1>

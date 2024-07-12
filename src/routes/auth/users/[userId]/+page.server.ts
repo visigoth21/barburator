@@ -2,7 +2,7 @@
 
 /** @type {import('.$types').PageLoad} */
 
-import { getUserById, isUserActive } from '$lib/server/db/models/users';
+import { getUserById } from '$lib/server/db/models/users';
 import { error, redirect } from '@sveltejs/kit';
 
 
@@ -32,28 +32,51 @@ import { fail } from '@sveltejs/kit';
 export const actions = {
     async updateUser({ params, request }) {
         const { userId } = params;
-        // const { title, author, publicationDate, isbn } = Object.fromEntries(
-        //     await request.formData()
-        // ) as {
-        //     title: string;
-        //     author: string;
-        //     publicationDate: string;
-        //     isbn: string;
-        // };
+        const { firstName,
+            lastName,
+            middleName,
+            phoneNumber,
+            address,
+            address2,
+            city,
+            state,
+            zip
+        } = Object.fromEntries(
+            await request.formData()
+        ) as {
+            firstName: string;
+            lastName: string;
+            middleName: string;
+            phoneNumber: string;
+            address: string;
+            address2: string;
+            city: string;
+            state: string;
+            zip: string;
+        };
+        console.log("loaded");
+        try { 
+            await editUserById({
+                id: userId,
+                firstName,
+                lastName,
+                middleName,
+                phoneNumber,
+                address,
+                address2,
+                city,
+                state,
+                zip
+            });
 
-        try {
-            // await editUserById({
-            //     id: userId,
-            //     title,
-            //     author,
-            //     publicationDate: new Date(publicationDate),
-            //     isbn: isbn ? parseInt(isbn) : undefined
-            // });
+            //console.log(JSON.stringify(title));
+            //console.log(firstName);
 
             return {
                 success: true
             };
-        } catch (error) {
+        }
+        catch (error) {
             console.error(error);
             return fail(500, {
                 error: 'Something went wrong while updating the User. Please try again.'
@@ -63,9 +86,9 @@ export const actions = {
 
     async userActive({ params }) {
         const { userId } = params;
-        await isUserActive(userId, true);
+       // await isUserActive(userId, true);
 
-        throw redirect(302, '/auth/books');
+        throw redirect(302, '/auth/users');
     }
 };
 
@@ -89,3 +112,9 @@ export const actions = {
 // zip: text('zip'),
 // company_id: text('company_id'),
 // isActive: integer('is_active', { mode: 'boolean' }).default(true)
+
+// id:
+// email:
+// hashedPassword:
+// isLevel1Admin, isLevel2Admin, isCustomer, firstName, lastName, middleName, phoneNumber, address, address2, city, state, zip, company_id, isActive
+// isLevel1Admin, isLevel2Admin, isCustomer, firstName, lastName, middleName, phoneNumber, address, address2, city, state, zip, company_id, isActive: 

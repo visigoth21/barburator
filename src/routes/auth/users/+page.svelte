@@ -1,7 +1,7 @@
 <!-- src/routes/auth/users/+page.svelte -->
 
 <script lang="ts">
-	import { getPhoneNumView } from '../../../lib/utils';
+	import { getPhoneNumView } from '$lib/components/formats';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -28,7 +28,7 @@
 						<td>{user.firstName}</td><td>{user.lastName}</td>
 						<td> | {user.email} | </td>
 						<td>{getPhoneNumView(user.phoneNumber)}</td>
-						<td><a href="/auth/users/{user.id}">Edit</a></td>
+						<td><a href="/auth/users/{user.id}">View</a></td>
 					</tr>
 				{/each}
 			</tbody>

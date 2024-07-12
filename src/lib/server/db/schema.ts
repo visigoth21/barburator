@@ -16,20 +16,20 @@ const users = sqliteTable('users', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	email: text('email').unique().notNull(),
 	hashedPassword: text('hashed_password').notNull(),
-	isLevel1Admin: integer('is_level_1_admin', { mode: 'boolean' }).default(true),
-	isLevel2Admin: integer('is_level_2_admin', { mode: 'boolean' }).default(false),
-	isCustomer: integer('is_customer', { mode: 'boolean' }).default(false),
-	firstName: text('first_name'),
-	lastName: text('last_name'),
-	middleName: text('middle_name'),
-	phoneNumber: text('phone_number'),
+	level1Admin: integer('level1Admin', { mode: 'boolean' }).default(true),
+	level2Admin: integer('level2Admin', { mode: 'boolean' }).default(false),
+	customer: integer('customer', { mode: 'boolean' }).default(false),
+	firstName: text('firstName'),
+	lastName: text('lastName'),
+	middleName: text('middleName'),
+	phoneNumber: text('phoneNumber'),
 	address: text('address'),
 	address2: text('address2'),
 	city: text('city'),
 	state: text('state'),
 	zip: text('zip'),
-	company_id: text('company_id'),
-	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+	companyId: text('companyId'),
+	active: integer('active', { mode: 'boolean' }).default(true)
 });
 
 const companies = sqliteTable('companies', {
@@ -37,14 +37,14 @@ const companies = sqliteTable('companies', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	name: text('name').notNull(),
 	website: text('website'),
-	phoneNumber: text('phone_number'),
+	phoneNumber: text('phoneNumber'),
 	address: text('address'),
 	address2: text('address2'),
 	city: text('city'),
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+	active: integer('active', { mode: 'boolean' }).default(true)
 });
 
 const customers = sqliteTable('customers', {
@@ -52,15 +52,15 @@ const customers = sqliteTable('customers', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	name: text('name').notNull(),
 	website: text('website'),
-	phoneNumber: text('phone_number'),
+	phoneNumber: text('phoneNumber'),
 	address: text('address'),
 	address2: text('address2'),
 	city: text('city'),
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	company_id: text('company_id').notNull().references(() => companies.id),
-	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+	companyId: text('companyId').notNull().references(() => companies.id),
+	active: integer('active', { mode: 'boolean' }).default(true)
 });
 
 const properties = sqliteTable('properties', {
@@ -68,16 +68,16 @@ const properties = sqliteTable('properties', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	name: text('name').notNull(),
 	website: text('website'),
-	phoneNumber: text('phone_number'),
+	phoneNumber: text('phoneNumber'),
 	address: text('address'),
 	address2: text('address2'),
 	city: text('city'),
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	customer_id: text('customer_id').notNull().references(() => customers.id),
-	company_id: text('company_id').notNull().references(() => companies.id),
-	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+	customerId: text('customerId').notNull().references(() => customers.id),
+	companyId: text('companyId').notNull().references(() => companies.id),
+	active: integer('active', { mode: 'boolean' }).default(true)
 });
 
 const sessions = sqliteTable('sessions', {
@@ -87,7 +87,7 @@ const sessions = sqliteTable('sessions', {
 	userId: text('user_id')
 		.notNull()
 		.references(() => users.id),
-	company_id: text('company_id')
+	companyId: text('companyId')
 });
 
 const books = sqliteTable('books', {

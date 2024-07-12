@@ -52,12 +52,14 @@ export const actions = {
 				publicationDate: new Date(publicationDate),
 				isbn: isbn ? parseInt(isbn) : undefined
 			});
-	
+
+			//console.log(JSON.stringify(title));
+
 			return {
 				success: true
 			};
 		} catch (error) {
-            console.error(error);
+			console.error(error);
 			return fail(500, {
 				error: 'Something went wrong while updating the book. Please try again.'
 			});

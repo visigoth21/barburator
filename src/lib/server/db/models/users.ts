@@ -25,24 +25,24 @@ const createNewUser = async (data: typeof users.$inferInsert) => {
 	await db.insert(users).values(data);
 };
 
-const isUserActive = async (id: string, isUserActive: boolean) => {
+const userActive = async (id: string, isUserActive: boolean) => {
 	await db.update(users).set({ isActive: isUserActive, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
-const isLevel1Admin = async (id: string, isAdmin: boolean) => {
+const level1Admin = async (id: string, isAdmin: boolean) => {
 	await db.update(users).set({ isLevel1Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
-const isLevel2Admin = async (id: string, isAdmin: boolean) => {
+const level2Admin = async (id: string, isAdmin: boolean) => {
 	await db.update(users).set({ isLevel2Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
-const isCustomer = async (id: string, isCust: boolean) => {
+const customer = async (id: string, isCust: boolean) => {
 	await db.update(users).set({ isCustomer: isCust, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
-const editUserById = async (book: InsertUserParams & { id: string }) => {
-	await db.update(users).set(book).where(eq(users.id, users.id));
+const editUserById = async (user: InsertUserParams & { id: string }) => {
+	await db.update(users).set(user).where(eq(users.id, user.id));
 };
 
 const setUsersCompany = async (id: string, company: string) => {
@@ -56,9 +56,9 @@ export {
 	getAllUsers,
 	deleteUserById,
 	editUserById,
-	isUserActive,
-	isLevel1Admin,
-	isLevel2Admin,
-	isCustomer,
+	userActive,
+	level1Admin,
+	level2Admin,
+	customer,
 	setUsersCompany,
 };
