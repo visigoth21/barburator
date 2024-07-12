@@ -49,6 +49,7 @@ export const actions = {
 		}
 
 		const userId = generateRandomId();
+		const coId = generateRandomId();
 		const hashedPassword = await new Argon2id().hash(password);
 
 		// Check if the email already exists
@@ -71,7 +72,8 @@ export const actions = {
 			address2,
 			city,
 			state,
-			zip
+			zip,
+			companyId: coId
 		});
 
 		redirect(302, '/login');
