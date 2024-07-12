@@ -1,4 +1,4 @@
-<!-- src/routes/auth/users/+page.svelte -->
+<!-- src/routes/auth/companies/+page.svelte -->
 
 <script lang="ts">
 	import { getPhoneNumView } from '$lib/components/formats';
@@ -8,23 +8,24 @@
 </script>
 
 <svelte:head>
-	<title>Users</title>
+	<title>Companies</title>
 </svelte:head>
+
 <div class="actions">
 <article>
 	<legend>
-		<h1>User info</h1>
+		<h1>Company info</h1>
 	</legend>
 
-	{#if data.users && data.users.length}
+	{#if data.companies && data.companies.length}
 	
-				{#each data.users as user (user.id)}
+				{#each data.companies as company (user.id)}
 				<fieldset>
 					<div>
-						<div>{user.firstName} {user.lastName}</div>
+						<!-- <div>{user.firstName} {user.lastName}</div>
 						<div>{user.email}</div>
 						<div>{getPhoneNumView(user.phoneNumber)}</div>
-						<div><a href="/auth/users/{user.id}">Edit</a></div>
+						<div><a href="/auth/users/{user.id}">Edit</a></div> -->
 					</div>
 				</fieldset>
 				{/each}
@@ -48,4 +49,3 @@
 		margin: 5px;
 	}
 </style>
-

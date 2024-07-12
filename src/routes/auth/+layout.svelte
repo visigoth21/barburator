@@ -12,11 +12,8 @@
 			<div class:nav-active={$page.url.pathname === '/auth'}>
 				<a href="/auth">Home</a>
 			</div>
-			<div class:nav-active={$page.url.pathname.includes('/auth/books')}>
-				<a href="/auth/books">Books</a>
-			</div>
 			<div class:nav-active={$page.url.pathname.includes('/auth/users')}>
-				<a href="/auth/users">Users</a>
+				<a href="/auth/users" class="nav" >Users</a>
 			</div>
 			<div class:nav-active={$page.url.pathname.includes('/auth/companies')}>
 				<a href="/auth/companies">Companies</a>
@@ -46,17 +43,23 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-
 	.nav-child {
 		margin: 0 10px;
 	}
 	.nav-active {
 		background-color: gray;
+		min-width: 200px;
 		color:white;
 	}
 	.nav-active a {
 		text-decoration: none;
 		color: white;
+		padding: 10px;
+	}
+	
+	a {
+		text-decoration: none;
+		color: black;
 		padding: 10px;
 	}
 	

@@ -18,6 +18,7 @@
 	}
 
 </script>
+
 	<div>
 		
 		{#if form?.error}
@@ -162,7 +163,7 @@ setUsersCompany, -->
 	legend {
 		background-color: gray;
 		color: white;
-		padding: 5px 10px;
+		padding: 1px 20px;
 	}
 
 	input {
