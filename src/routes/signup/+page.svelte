@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { cleanPhoneNum, states } from '$lib/components/formats';
 
 	export let form;
 </script>
@@ -24,6 +25,13 @@
 	<input type="text" name="address" placeholder="address" required />
 	<input type="text" name="address2" placeholder="address2" /><br />
 	<input type="text" name="city" placeholder="city" required />
+	{#if states}
+						<select name="state" id="state">
+							{#each states as state}
+									<option value="state">{state}</option>
+							{/each}
+						</select>
+					{/if}
 	<input type="text" name="state" placeholder="state" required />
 	<input type="text" name="zip" placeholder="zip" required /><br />
 	<br />
