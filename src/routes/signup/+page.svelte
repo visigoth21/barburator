@@ -32,7 +32,6 @@
 							{/each}
 						</select>
 					{/if}
-	<input type="text" name="state" placeholder="state" required />
 	<input type="text" name="zip" placeholder="zip" required /><br />
 	<br />
 	<button type="submit">Signup</button>
