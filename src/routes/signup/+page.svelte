@@ -28,7 +28,7 @@
 	{#if states}
 						<select name="state" id="state">
 							{#each states as state}
-									<option value="state">{state}</option>
+									<option value="{state}">{state}</option>
 							{/each}
 						</select>
 					{/if}

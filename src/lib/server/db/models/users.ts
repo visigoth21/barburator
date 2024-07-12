@@ -26,19 +26,19 @@ const createNewUser = async (data: typeof users.$inferInsert) => {
 };
 
 const userActive = async (id: string, isUserActive: boolean) => {
-	await db.update(users).set({ isActive: isUserActive, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ active: isUserActive, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
 const level1Admin = async (id: string, isAdmin: boolean) => {
-	await db.update(users).set({ isLevel1Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ level1Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
 const level2Admin = async (id: string, isAdmin: boolean) => {
-	await db.update(users).set({ isLevel2Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ level2Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
 const customer = async (id: string, isCust: boolean) => {
-	await db.update(users).set({ isCustomer: isCust, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ customer: isCust, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
 const editUserById = async (user: InsertUserParams & { id: string }) => {
@@ -46,7 +46,7 @@ const editUserById = async (user: InsertUserParams & { id: string }) => {
 };
 
 const setUsersCompany = async (id: string, company: string) => {
-	await db.update(users).set({ company_id: company, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ companyId: company, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
 export {

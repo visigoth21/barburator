@@ -39,7 +39,6 @@
 	#nav-container {
 		background-color: rgb(120, 139, 100);
 		overflow: hidden;
-		width: 600px;
 	}
 
 	#nav-inner {
@@ -52,6 +51,13 @@
 		margin: 0 10px;
 	}
 	.nav-active {
-		background-color: white;
+		background-color: gray;
+		color:white;
 	}
+	.nav-active a {
+		text-decoration: none;
+		color: white;
+		padding: 10px;
+	}
+	
 </style>

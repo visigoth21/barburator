@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { getReadableDate } from '$lib/utils';
 	import Notice from '$lib/components/Notice.svelte';
 
 	export let data;

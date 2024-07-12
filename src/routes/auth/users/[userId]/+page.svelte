@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { redirect } from '@sveltejs/kit';
 	import { cleanPhoneNum, states } from '$lib/components/formats';
 	import Notice from '$lib/components/Notice.svelte';
 
@@ -7,107 +8,103 @@
 	export let form;
 
 	let running = false;
-	let openEditDialog = false;
 
 	$: ({ user } = data);
 
-	$: if (form?.success) {
-		openEditDialog = false;
-	}
-</script>
+	console.log(form?.success);
 
-<dialog open={openEditDialog}>
-	<article>
+	$: if (form?.success) {
+		redirect(303, '/auth/users');
+	}
+
+</script>
+	<div>
+		
 		{#if form?.error}
 			<Notice message={form.error} type="error" />
 		{/if}
 
-		<legend>
-			<button aria-label="Close" rel="prev" on:click={() => (openEditDialog = false)}>X</button>
-			<h2>Edit : {user.firstName + ' ' + user.lastName}</h2>
-		</legend>
-
-		<form action="?/updateUser" method="post" use:enhance>
-			<fieldset>
-				<label>
-					First name
-					<input type="text" name="firstName" placeholder="Last Name" value={user.firstName} />
-				</label>
-
-				<label>
-					Last name
-					<input type="text" name="lastName" placeholder="Last Name" value={user.lastName} />
-				</label>
-
-				<label>
-					Middle name
-					<input type="text" name="middleName" placeholder="Middle" value={user.middleName} />
-				</label><br />
-
-				<label>
-					Phone
-					<input
-						type="text"
-						name="phoneNumber"
-						placeholder="Phone Number"
-						value={cleanPhoneNum(user.phoneNumber)}
-					/>
-				</label>
-				<br />
-
-				<label>
-					Address
-					<input type="text" name="address" placeholder="Address" value={user.address} />
-				</label>
-				<label>
-					<input type="text" name="address2" placeholder="Address 2" value={user.address2} />
-				</label>
-				<br />
-				<label>
-					City
-					<input type="text" name="city" placeholder="City" value={user.city} />
-				</label>
-				<lable>
-					State
-					{#if states}
-						<select name="state" id="state">
-							{#each states as state}
-								{#if state === user.state}
-									<option value="state" selected>{state}</option>
-								{:else}
-									<option value="state">{state}</option>
-								{/if}
-							{/each}
-						</select>
-					{/if}
-				</lable>
-				<label>
-					Zip
-					<input type="text" name="zip" placeholder="zip" value={user.zip} />
-				</label>
-			</fieldset>
-
-			<button type="submit">Save</button>
-		</form>
-	</article>
-</dialog>
-
-<section>
-	<h1>{user.firstName + ' ' + user.lastName}</h1>
-
-	<div>
-		<h2>Actions</h2>
-
 		{#if running}
 			<div class="spinner-wrapper">
-				<span aria-busy="true">Deleting book {user.lastName}...</span>
+				<span aria-busy="true">Deleting user {user.lastName}...</span>
 			</div>
 		{/if}
-
+		
 		<div class="actions">
-			<button on:click={() => (openEditDialog = !openEditDialog)} class="action">Edit</button>
+			<article>
+				{#if form?.error}
+					<Notice message={form.error} type="error" />
+				{/if}
+		
+				<legend>
+					<h2>Edit : {user.firstName + ' ' + user.lastName}</h2>
+				</legend>
+		
+				<form action="?/updateUser" method="post" use:enhance>
+					<fieldset>
+						<label>
+							First name
+							<input type="text" name="firstName" value={user.firstName} />
+						</label>
+		
+						<label>
+							Last name
+							<input type="text" name="lastName" placeholder="{user.lastName ? 'Last Name' : undefined}" value={user.lastName} />
+						</label>
+		
+						<label>
+							Middle name
+							<input type="text" name="middleName" placeholder="Middle" value={user.middleName} />
+						</label><br />
+		
+						<label>
+							Phone
+							<input
+								type="text"
+								name="phoneNumber"
+								placeholder="Phone Number"
+								value={cleanPhoneNum(user.phoneNumber)}
+							/>
+						</label>
+						<br />
+		
+						<label>
+							Address
+							<input type="text" name="address" placeholder="Address" value={user.address} />
+						</label>
+						<label>
+							<input type="text" name="address2" placeholder="Address 2" value={user.address2} />
+						</label>
+						<br />
+						<label>
+							City
+							<input type="text" name="city" placeholder="City" value={user.city} />
+						</label>
+						<lable>
+							State
+							{#if states}
+								<select name="state" id="state">
+									{#each states as state}
+										{#if state === user.state}
+											<option value="{state}" selected>{state}</option>
+										{:else}
+											<option value="{state}">{state}</option>
+										{/if}
+									{/each}
+								</select>
+							{/if}
+						</lable>
+						<label>
+							Zip
+							<input type="text" name="zip" placeholder="zip" value={user.zip} />
+						</label>
+					</fieldset>
+		
+					<button type="submit">Save</button>
+				</form>
+			</article>
 
-			<form
+			<!-- <form
 				action="?/deleteBook"
 				method="post"
 				use:enhance={() => {
@@ -120,12 +117,11 @@
 				}}
 			>
 				<button class="contrast action">Delete</button>
-			</form>
+			</form> -->
 		</div>
 	</div>
 
-	<!-- single book code -->
-</section>
+
 
 <!-- ...timestamp,
 id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),

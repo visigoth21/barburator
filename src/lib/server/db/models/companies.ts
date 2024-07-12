@@ -22,7 +22,7 @@ const createNewCompany = async (data: typeof companies.$inferInsert) => {
 };
 
 const activateCompanyById = async (id: string, active: boolean) => {
-    await db.update(companies).set({ isActive: active, updatedAt: sysDate() }).where(eq(companies.id, id));
+    await db.update(companies).set({ active: active, updatedAt: sysDate() }).where(eq(companies.id, id));
 };
 
 const editCompanyById = async (book: InsertCompanyParams & { id: string }) => {

@@ -5,7 +5,6 @@
 import { getUserById } from '$lib/server/db/models/users';
 import { error, redirect } from '@sveltejs/kit';
 
-
 export const load = async ({ params, parent }) => {
 
     const { localsUser } = await parent();
@@ -54,7 +53,7 @@ export const actions = {
             state: string;
             zip: string;
         };
-       // console.log("loaded");
+        console.log("loaded");
         try { 
             await editUserById({
                 id: userId,
@@ -69,12 +68,9 @@ export const actions = {
                 zip
             });
 
-            //console.log(JSON.stringify(title));
-            //console.log(firstName);
-
-            return {
-                success: true
-            };
+           // redirect(303, `/auth`);
+            //user = await getUserById(userId);
+//
         }
         catch (error) {
             console.error(error);
@@ -82,13 +78,8 @@ export const actions = {
                 error: 'Something went wrong while updating the User. Please try again.'
             });
         }
-    },
 
-    async userActive({ params }) {
-        const { userId } = params;
-       // await isUserActive(userId, true);
-
-        throw redirect(302, '/auth/users');
+        redirect(303, `./`);
     }
 };
 
