@@ -1,16 +1,23 @@
-// src/stores/auth.store.ts
+// src/lib/stores/auth.store.ts
 
-import { getUserByEmail } from '$lib/server/db/models/users';
+//import { getUserByEmail } from '$lib/server/db/models/users';
 import { readable } from "svelte/store";
 
-const user = '';
-const pass = '';
+export default readable({ isActive: false, 
+    isLoggedin: false,
+    isSysAdmin: false, 
+    isCustomer: false, 
+    isLevel1Admin: false, 
+    isLevel2Admin: false });
 
-export const store = readable(null);
+// const user = '';
+// const pass = '';
 
-let sessions = []
+// export const store = readable(null);
 
-export const UserDetails = async (username) => {
-    // if ( username === user && password === pass )
-    return 1
-}
+// let sessions = []
+
+// export const UserDetails = async (username) => {
+//     // if ( username === user && password === pass )
+//     return 1
+// }

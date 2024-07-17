@@ -1,16 +1,4 @@
 <script lang="ts">
-	import { counter } from '$lib/stores/counter.store';
-	import { page } from '$app/stores';
-	import { states } from '$lib/components/formats';
-
-	let count = 0;
-
-	counter.subscribe((value) => {
-		count = value;
-	});
-
-	//counter.set(10);
-
 	export let data;
 </script>
 
@@ -20,7 +8,6 @@
 
 <h1>Main system</h1>
 
-<h3>The count is {count}</h3>
 
 {#if data.localsUser}
 	<p>

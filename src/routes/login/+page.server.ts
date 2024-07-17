@@ -39,7 +39,6 @@ export const actions = {
 
 		// Create a new session and set the session cookie
 		const session = await lucia.createSession(user.id, {
-			company_id: user.company_id,
 			created_at: new Date(),
 			updated_at: new Date()
 		});

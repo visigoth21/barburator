@@ -16,19 +16,25 @@ const users = sqliteTable('users', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	email: text('email').unique().notNull(),
 	hashedPassword: text('hashed_password').notNull(),
+	sysAdmin: integer('level1Admin', { mode: 'boolean' }).default(false),
 	level1Admin: integer('level1Admin', { mode: 'boolean' }).default(true),
 	level2Admin: integer('level2Admin', { mode: 'boolean' }).default(false),
-	customer: integer('customer', { mode: 'boolean' }).default(false),
+	company_id: text('company_id'),
+	active: integer('active', { mode: 'boolean' }).default(true)
+});
+
+const usersInfo = sqliteTable('usersInfo', {
+	...timestamp,
+	id: text('id').primaryKey().notNull(),
 	firstName: text('firstName'),
 	lastName: text('lastName'),
 	middleName: text('middleName'),
 	phoneNumber: text('phoneNumber'),
 	address: text('address'),
-	address2: text('address2'),
+	address_2: text('address_2'),
 	city: text('city'),
 	state: text('state'),
 	zip: text('zip'),
-	companyId: text('companyId'),
 	active: integer('active', { mode: 'boolean' }).default(true)
 });
 
@@ -84,33 +90,37 @@ const sessions = sqliteTable('sessions', {
 	...timestamp,
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	expiresAt: integer('expires_at').notNull(),
-	userId: text('user_id')
-		.notNull()
-		.references(() => users.id),
-	companyId: text('companyId')
+	userId: text('user_id').notNull().references(() => users.id)
 });
 
-const books = sqliteTable('books', {
-	...timestamp,
-	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
-	publicationDate: integer('publication_date', { mode: 'timestamp' }).notNull(),
-	title: text('title').notNull(),
-	author: text('author').notNull(),
-	isbn: integer('isbn').unique()
-});
+// const books = sqliteTable('books', {
+// 	...timestamp,
+// 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
+// 	publicationDate: integer('publication_date', { mode: 'timestamp' }).notNull(),
+// 	title: text('title').notNull(),
+// 	author: text('author').notNull(),
+// 	isbn: integer('isbn').unique()
+// });
 
-type InsertBookParams = typeof books.$inferInsert;
+// type InsertBookParams = typeof books.$inferInsert;
 type InsertUserParams = typeof users.$inferInsert;
+type InsertUserInfoParams = typeof usersInfo.$inferInsert;
 type InsertCompanyParams = typeof companies.$inferInsert;
+type InsertCustomerParams = typeof customers.$inferInsert;
+type InsertPropertyParams = typeof properties.$inferInsert;
 
 export {
-	books,
+	// books,
+	// type InsertBookParams,
 	sessions,
 	users,
+	usersInfo,
 	companies,
 	customers,
 	properties,
-	type InsertBookParams,
 	type InsertUserParams,
-	type InsertCompanyParams
+	type InsertUserInfoParams,
+	type InsertCompanyParams,
+	type InsertCustomerParams,
+	type InsertPropertyParams
 };

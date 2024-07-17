@@ -5,11 +5,9 @@ import { Lucia } from 'lucia';
 
 interface DatabaseUserAttributes {
 	email: string;
-	company_id: string;
 }
 
 interface DatabaseSessionAttributes {
-	company_id: string;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -27,13 +25,11 @@ const lucia = new Lucia(adapter, {
 	},
 	getUserAttributes: (attributes) => {
 		return {
-			email: attributes.email,
-			companyId: attributes.company_id
+			email: attributes.email
 		};
 	},
 	getSessionAttributes: (attributes) => {
 		return {
-			company_id: attributes.company_id,
 			created_at: attributes.created_at,
 			updated_at: attributes.updated_at
 		};

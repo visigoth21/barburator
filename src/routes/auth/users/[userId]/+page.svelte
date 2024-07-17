@@ -11,11 +11,11 @@
 
 	$: ({ user } = data);
 
-	console.log(form?.success);
+	// console.log(form?.success);
 
-	$: if (form?.success) {
-		redirect(303, '/auth/users');
-	}
+	// $: if (form?.success) {
+	// 	redirect(303, '/auth/users');
+	// }
 
 </script>
 

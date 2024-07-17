@@ -73,7 +73,7 @@ export const actions = {
 			city,
 			state,
 			zip,
-			companyId: coId
+			company_id: coId
 		});
 
 		redirect(302, '/login');

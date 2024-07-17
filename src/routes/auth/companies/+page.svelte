@@ -19,7 +19,7 @@
 
 	{#if data.companies && data.companies.length}
 	
-				{#each data.companies as company (user.id)}
+				{#each data.companies as company (company.id)}
 				<fieldset>
 					<div>
 						<!-- <div>{user.firstName} {user.lastName}</div>
