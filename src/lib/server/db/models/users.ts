@@ -1,5 +1,5 @@
 import { db } from '$lib/server/db/client';
-import { users, type InsertUserParams, usersInfo, type InsertUserInfoParams } from '$lib/server/db/schema';
+import { users, type InsertUserParams, companies, type InsertCompanyParams } from '$lib/server/db/schema';
 import { desc, eq } from 'drizzle-orm';
 
 const sysDate = () => new Date()
@@ -18,21 +18,15 @@ const deleteUserById = async (id: string) => {
 };
 
 const getAllUsers = async () => {
-	return await db.select().from(users).orderBy(desc(users.createdAt)).get();
+	return await db.select().from(users).orderBy(desc(users.lastName));
 };
 
-const createNewUser = async (data) => {
-	await createUser(data);
-	await createUserInfo(data);
-};
+const createNewUser = async (data: typeof users.$inferInsert) => {
 
-const createUser = async (data: typeof users.$inferInsert) => {
 	await db.insert(users).values(data);
-};
-
-const createUserInfo = async (data: typeof usersInfo.$inferInsert) => {
-	await db.insert(usersInfo).values(data);
-
+	if (data.sysAdmin) {
+	createUsersCompany(data);
+	}
 };
 
 const userActive = async (id: string, isUserActive: boolean) => {
@@ -47,16 +41,21 @@ const level2Admin = async (id: string, isAdmin: boolean) => {
 	await db.update(users).set({ level2Admin: isAdmin, updatedAt: sysDate() }).where(eq(users.id, id));
 };
 
-// const customer = async (id: string, isCust: boolean) => {
-// 	await db.update(users).set({ customer: isCust, updatedAt: sysDate() }).where(eq(users.id, id));
-// };
+const customer = async (id: string, isCust: boolean) => {
+	await db.update(users).set({ customer: isCust, updatedAt: sysDate() }).where(eq(users.id, id));
+};
 
 const editUserById = async (user: InsertUserParams & { id: string }) => {
 	await db.update(users).set(user).where(eq(users.id, user.id));
 };
 
 const setUsersCompany = async (id: string, company: string) => {
-	await db.update(users).set({ companyId: company, updatedAt: sysDate() }).where(eq(users.id, id));
+	await db.update(users).set({ company_id: company, updatedAt: sysDate() }).where(eq(users.id, id));
+};
+
+
+const createUsersCompany = async (data) => {
+	await db.insert(companies).values({ id: data.company_id });
 };
 
 export {
@@ -69,5 +68,6 @@ export {
 	userActive,
 	level1Admin,
 	level2Admin,
+	customer,
 	setUsersCompany,
 };
