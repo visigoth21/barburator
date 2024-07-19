@@ -5,8 +5,8 @@ import { desc, eq } from 'drizzle-orm';
 const sysDate = () => new Date();
 
 const getCompanyIdBySessionId = async (sessionId: string) => {
-	const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
-	return sessionCompanyId.company_id;
+	//const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
+	return ;//sessionCompanyId.company_id;
 };
 
 const getUserByEmail = async (email: string) => {
@@ -22,9 +22,10 @@ const deleteUserById = async (id: string) => {
 	await db.delete(users).where(eq(users.id, id));
 };
 
-const getAllUsers = async (sessionId: string) => {
-	const company = await getCompanyIdBySessionId(sessionId);
-	return await db.select().from(users).where(eq(users.company_id, company)).orderBy(desc(users.sysAdmin), desc(users.lastName));
+const getAllUsers = async () => { //sessionId: string
+	//const company = await getCompanyIdBySessionId(sessionId);
+	//return await db.select().from(users).where(eq(users.company_id, company)).orderBy(desc(users.sysAdmin), desc(users.lastName));
+return await db.select().from(users).orderBy(desc(users.sysAdmin), desc(users.lastName));
 };
 
 const createNewUser = async (data: typeof users.$inferInsert) => {

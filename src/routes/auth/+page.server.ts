@@ -12,7 +12,7 @@ export const load = async ({ parent, cookies }) => {
 		redirect(302, '/login');
 	}
 
-	return {sessionId};
+	return {};
 };
 
 //const session = await auth.getSession(sessionId);

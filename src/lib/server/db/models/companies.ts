@@ -61,5 +61,5 @@ export {
 // 	state: text('state'),
 // 	zip: text('zip'),
 // 	contact: text('contact'),
-// 	isActive: integer('is_active', { mode: 'boolean' }).default(true)
+// 	isActive: integer('is_active', { mode: 'boolean' }).default(false)
 // });

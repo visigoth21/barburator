@@ -1,8 +1,5 @@
 <script lang="ts">
 	import '../styles.css';
-	import { page } from '$app/stores';
-	import { redirect } from '@sveltejs/kit';
-	// import { enhance } from "$app/forms";
 
 	export let data;
 </script>

@@ -1,6 +1,7 @@
 // src/routes/auth/users/+page.server.ts
 
 import { getAllUsers } from '$lib/server/db/models/users';
+import { getCompanyIdBySessionId } from '$lib/server/db/models/companies';
 import { redirect } from '@sveltejs/kit';
 import { lucia } from '$lib/server/auth/lucia';
 
@@ -17,6 +18,7 @@ export const load = async ({ parent, cookies }) => {
 
     return {
         users: await getAllUsers(sessionId),
+				company: getCompanyIdBySessionId(sessionId),
         sessionId
     };
 };

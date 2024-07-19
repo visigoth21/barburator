@@ -12,7 +12,7 @@ export const load = async ({ parent }) => {
 
 
 
-	return { users: await getAllUsers() };
+	return { }; //users: await getAllUsers()
 };
 
 export const actions = {

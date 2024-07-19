@@ -45,7 +45,7 @@ const companies = sqliteTable('companies', {
 	state: text('state'),
 	zip: text('zip'),
 	contact: text('contact'),
-	active: integer('active', { mode: 'boolean' }).default(true)
+	active: integer('active', { mode: 'boolean' }).default(false)
 });
 
 const customers = sqliteTable('customers', {
@@ -86,7 +86,7 @@ const sessions = sqliteTable('sessions', {
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	expiresAt: integer('expires_at').notNull(),
 	userId: text('user_id').notNull().references(() => users.id),
-	company_id: text('company_id').notNull().references(() => users.company_id)
+	company_id: text('company_id')
 });
 
 // const books = sqliteTable('books', {
