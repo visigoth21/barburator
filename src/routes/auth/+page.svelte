@@ -12,6 +12,7 @@
 {#if data.localsUser}
 	<p>
 		You are logged in as {data.localsUser.email}.
+		{data.sessionId}
 	</p>
 {/if}
 

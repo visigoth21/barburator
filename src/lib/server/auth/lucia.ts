@@ -4,10 +4,12 @@ import { LibSQLAdapter } from '@lucia-auth/adapter-sqlite';
 import { Lucia } from 'lucia';
 
 interface DatabaseUserAttributes {
+	company_id: string;
 	email: string;
 }
 
 interface DatabaseSessionAttributes {
+	company_id: string;
 	created_at: Date;
 	updated_at: Date;
 }
@@ -25,11 +27,13 @@ const lucia = new Lucia(adapter, {
 	},
 	getUserAttributes: (attributes) => {
 		return {
-			email: attributes.email
+			email: attributes.email,
+			company_id: attributes.company_id
 		};
 	},
 	getSessionAttributes: (attributes) => {
 		return {
+			company_id: attributes.company_id,
 			created_at: attributes.created_at,
 			updated_at: attributes.updated_at
 		};

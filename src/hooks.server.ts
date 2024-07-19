@@ -48,7 +48,7 @@ const LuciaHandle: Handle = async ({ event, resolve }) => {
 	event.locals.user = user;
 	event.locals.session = session;
 	//event.locals.company = session;
-	//console.log('event.locals.user: ', event.locals.user);
+	//console.log('test: ', sessionId);
 
 	return await resolve(event);
 };

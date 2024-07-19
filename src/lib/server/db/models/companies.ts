@@ -1,5 +1,5 @@
 import { db } from '$lib/server/db/client';
-import { companies, type InsertCompanyParams } from '$lib/server/db/schema';
+import { companies, type InsertCompanyParams, sessions } from '$lib/server/db/schema';
 import { desc, eq } from 'drizzle-orm';
 
 const sysDate = () => new Date()
@@ -7,6 +7,11 @@ const sysDate = () => new Date()
 const getCompanyById = async (id: string) => {
     const company = await db.select().from(companies).where(eq(companies.id, id));
     return company[0];
+};
+
+const getCompanyIdBySessionId = async (sessionId: string) => {
+	const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
+	return sessionCompanyId.company_id;
 };
 
 const deleteCompanyById = async (id: string) => {
@@ -36,6 +41,7 @@ const editCompanyById = async (book: InsertCompanyParams & { id: string }) => {
 export {
     createNewCompany,
     getCompanyById,
+    getCompanyIdBySessionId,
     getAllCompanies,
     editCompanyById,
     deleteCompanyById,

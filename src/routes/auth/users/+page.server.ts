@@ -1,16 +1,22 @@
 // src/routes/auth/users/+page.server.ts
-import { redirect } from '@sveltejs/kit';
+
 import { getAllUsers } from '$lib/server/db/models/users';
+import { redirect } from '@sveltejs/kit';
+import { lucia } from '$lib/server/auth/lucia';
 
-export const load = async ({ parent }) => {
 
-    const { localsUser } = await parent();
+export const load = async ({ parent, cookies }) => {
+	const { localsUser } = await parent();
 
-    if (!localsUser) {
-        redirect(302, '../..');
-    }
+		
+	const sessionId = cookies.get(lucia.sessionCookieName);
+
+	if (!localsUser) {
+		redirect(302, '/login');
+	}
 
     return {
-        users: await getAllUsers()
+        users: await getAllUsers(sessionId),
+        sessionId
     };
 };

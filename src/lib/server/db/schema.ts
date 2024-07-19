@@ -85,9 +85,8 @@ const sessions = sqliteTable('sessions', {
 	...timestamp,
 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
 	expiresAt: integer('expires_at').notNull(),
-	userId: text('user_id')
-		.notNull()
-		.references(() => users.id)
+	userId: text('user_id').notNull().references(() => users.id),
+	company_id: text('company_id').notNull().references(() => users.company_id)
 });
 
 // const books = sqliteTable('books', {
@@ -102,6 +101,7 @@ const sessions = sqliteTable('sessions', {
 // type InsertBookParams = typeof books.$inferInsert;
 type InsertUserParams = typeof users.$inferInsert;
 type InsertCompanyParams = typeof companies.$inferInsert;
+type InsertSessionsParams = typeof sessions.$inferInsert;
 
 export {
 	// books,
@@ -112,5 +112,6 @@ export {
 	customers,
 	properties,
 	type InsertUserParams,
-	type InsertCompanyParams
+	type InsertCompanyParams,
+	type InsertSessionsParams
 };

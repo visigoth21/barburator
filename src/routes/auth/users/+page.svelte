@@ -21,6 +21,9 @@
 				{#each data.users as user (user.id)}
 				<fieldset>
 					<div>
+						{#if user.sysAdmin}
+							<div class='sysadmindiv'>System Admin</div>
+						{/if}
 						<div>{user.firstName} {user.lastName}</div>
 						<div>{user.email}</div>
 						<div>{getPhoneNumView(user.phoneNumber)}</div>
@@ -31,6 +34,7 @@
 
 	{/if}
 	</article>
+	as {data.sessionId}
 </div>
 
 <style>
@@ -47,5 +51,8 @@
 	input {
 		margin: 5px;
 	}
+	.sysadmindiv {
+		background-color: #a4dabd;
+	}	
 </style>
 

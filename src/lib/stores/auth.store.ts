@@ -1,23 +1,44 @@
 // src/lib/stores/auth.store.ts
 
-//import { getUserByEmail } from '$lib/server/db/models/users';
-import { readable } from "svelte/store";
 
-export default readable({ isActive: false, 
-    isLoggedin: false,
-    isSysAdmin: false, 
-    isCustomer: false, 
-    isLevel1Admin: false, 
-    isLevel2Admin: false });
 
-// const user = '';
-// const pass = '';
 
-// export const store = readable(null);
 
-// let sessions = []
 
-// export const UserDetails = async (username) => {
-//     // if ( username === user && password === pass )
-//     return 1
-// }
+
+
+
+
+
+// import { getContext, hasContext, setContext } from "svelte";
+// import { readable, writable } from "svelte/store";
+// import { rune } from "./rune.svelte";
+
+// export const useSharedStore = <T, A>(
+//     name: string,
+//     fn: (value?: A) => T,
+//     defaultValue?: A,
+// ) => {
+//     if (hasContext(name)) {
+//         return getContext<T>(name);
+//     }
+//     const _value = fn(defaultValue);
+//     setContext(name, _value);
+//     return _value;
+// };
+
+// // writable store context
+// export const useWritable = <T>(name: string, value?: T) =>
+//     useSharedStore(name, writable, value);
+
+// // readable store context
+// export const useReadable = <T>(name: string, value: T) =>
+//     useSharedStore(name, readable, value);
+
+// // shared rune
+// export const useRune = <T>(name: string, value: T) =>
+//     useSharedStore(name, rune, value);
+
+// // shared writable store
+
+

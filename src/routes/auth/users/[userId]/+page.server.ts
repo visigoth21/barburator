@@ -53,7 +53,7 @@ export const actions = {
             state: string;
             zip: string;
         };
-        console.log("loaded");
+ 
         try { 
             await editUserById({
                 id: userId,
@@ -96,7 +96,7 @@ export const actions = {
 // lastName: text('last_name'),
 // middleName: text('middle_name'),
 // phoneNumber: text('phone_number'),
-// address: text('address'),
+// address: text('address'), 
 // address2: text('address2'),
 // city: text('city'),
 // state: text('state'),

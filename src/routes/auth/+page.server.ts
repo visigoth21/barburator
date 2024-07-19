@@ -1,14 +1,21 @@
 import { redirect } from '@sveltejs/kit';
+import { lucia } from '$lib/server/auth/lucia';
 
-export const load = async ({ parent }) => {
+
+export const load = async ({ parent, cookies }) => {
 	const { localsUser } = await parent();
+
+		
+	const sessionId = cookies.get(lucia.sessionCookieName);
 
 	if (!localsUser) {
 		redirect(302, '/login');
 	}
 
-	return {};
+	return {sessionId};
 };
+
+//const session = await auth.getSession(sessionId);
 
 
 // import { lucia } from '$lib/server/auth/lucia';
