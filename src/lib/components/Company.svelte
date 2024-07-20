@@ -1,22 +1,33 @@
-<script>
+<script lang="ts">
+
   import { getPhoneNumView } from '$lib/components/formats';
 
   export let data;
-  
-  let clicked = () => {
-    console.log('clicked');
-  }
+
+  // console.log("now it works : " + corpData.id);
+
 </script>
 
-{data.company.name}
-{#if data.company.active === false}
-<div>
-  <h2>{data.company.name}</h2>
-  <div>{data.company.address}</div>
-  <div>{data.company.city}, {data.company.state}. {data.company.zip}</div>
-  <div>{getPhoneNumView(data.company.phoneNumber)}</div>
-</div>
-{:else}
-  {data.company.active}
-  <button on:click={() => {clicked}}>Add Company</button>
-{/if}
+<h3>Company Info</h3>
+
+			<!-- {#each data as corp (data.id)} -->
+        <h2>ID : {data}</h2>
+			<!-- {/each} -->
+<!-- {:else}
+  <div>no data</div>
+{/if} -->
+
+
+<!-- {#if corp.active === true} -->
+<!-- <div>
+  <button on:click={() => {clicked}}>+ Add Company</button>
+</div> -->
+<!-- {:else} -->
+  
+<!-- {/if} -->
+
+
+<!-- <h2>Name : {corp.company.name}</h2>
+<div>{corp.company.address}</div>
+<div>{corp.company.city}, {corp.company.state}. {corp.company.zip}</div>
+<div>{getPhoneNumView(corp.company.phoneNumber)}</div> -->

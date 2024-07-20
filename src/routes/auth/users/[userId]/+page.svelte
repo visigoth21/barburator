@@ -33,9 +33,6 @@
 		
 		<div class="actions">
 			<article>
-				{#if form?.error}
-					<Notice message={form.error} type="error" />
-				{/if}
 		
 				<legend>
 					<h2>Edit : {user.firstName + ' ' + user.lastName}</h2>

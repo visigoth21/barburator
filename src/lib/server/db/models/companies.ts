@@ -9,6 +9,11 @@ const getCompanyById = async (id: string) => {
     return company[0];
 };
 
+const getCompanyBySessionId = async (sessionId: string) => {
+	return await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
+	//return sessionCompanyId.company_id;
+};
+
 const getCompanyIdBySessionId = async (sessionId: string) => {
 	const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
 	return sessionCompanyId.company_id;
@@ -42,6 +47,7 @@ export {
     createNewCompany,
     getCompanyById,
     getCompanyIdBySessionId,
+    getCompanyBySessionId,
     getAllCompanies,
     editCompanyById,
     deleteCompanyById,

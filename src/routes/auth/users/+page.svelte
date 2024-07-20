@@ -3,12 +3,16 @@
 <script lang="ts">
 	import User from '$lib/components/User.svelte';
 	import Company from '$lib/components/Company.svelte';
+	
 
 	/** @type {import('./$types').PageData} */
 
 	export let data;
 
-	console.log(data.company.name);
+
+	let clicked = () => {
+		console.log('clicked');
+	}
 
 </script>
 
@@ -20,13 +24,16 @@
 		<h1>User info</h1>
 	</legend>
 
+	<!-- <Company data={data} /> -->
+
 	{#if data.users && data.users.length}
-<Company {data} />
-<User {data} />
+		<User data={data.users} />
 {/if}
-<legend>
-	<h1>Add User</h1>
-</legend>
+
+	<div>
+		<button on:click={() => {clicked}}>+ Add User</button>
+	</div>
+
 
 
 <style>
