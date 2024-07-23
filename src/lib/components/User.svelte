@@ -1,32 +1,45 @@
 <script>
-  import { getPhoneNumView } from '$lib/components/formats';
-	import Company from '$lib/components/Company.svelte';
+	import { getPhoneNumView } from '$lib/components/formats';
 
-  export let data;
-  
+	export let data;
 </script>
 
-		{#each data as user (data.id)}
-			<fieldset>
-				<div>
-					{#if user.sysAdmin}
-						<div class='sysadmindiv'>System Admin</div>
-						<div><Company data={user.company_id} /></div>
-					{/if}
-					<div>{user.firstName} {user.lastName}</div>
-					<div>{user.email}</div>
-					<div>{getPhoneNumView(user.phoneNumber)}</div>
-					<div><a href="/auth/users/{user.id}">Edit</a></div>
-			</fieldset>
-			{/each}
-
+<div class="usercard">
+	{#if data.sysAdmin}
+		<div class="sysadmindiv">System Admin</div>
+	{/if}
+	<div>{data.email}</div>
+	<div>{data.firstName} {data.lastName}</div>
+	<div>{getPhoneNumView(data.phoneNumber)}</div>
+	<div><a href="/auth/users/{data.id}" class="button">Edit</a></div>
+</div>
 
 <style>
-	fieldset {
-		background-color: #eeeeee;
+	.usercard {
+		background-color: #b49b9b;
+		border-top: 1px solid #cccccc;
+		border-right: 1px solid #333333;
+		border-bottom: 1px solid #333333;
+		border-left: 1px solid #cccccc;
+		max-width: 300px;
 	}
 	.sysadmindiv {
-		background-color: rgb(140, 167, 203);
+		background-color: rgb(141, 156, 176);
 		color: white;
+		border-top: 1px solid #cccccc;
+		border-right: 1px solid #333333;
+		border-bottom: 1px solid #333333;
+		border-left: 1px solid #cccccc;
+	}
+	.button {
+		font: bold 11px Arial;
+		text-decoration: none;
+		background-color: #eeeeee;
+		color: #333333;
+		padding: 2px 6px 2px 6px;
+		border-top: 1px solid #cccccc;
+		border-right: 1px solid #333333;
+		border-bottom: 1px solid #333333;
+		border-left: 1px solid #cccccc;
 	}
 </style>

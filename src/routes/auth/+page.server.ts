@@ -1,12 +1,17 @@
+// src/routes/auth/+page.server.ts
 import { redirect } from '@sveltejs/kit';
-import { lucia } from '$lib/server/auth/lucia';
+//import { lucia } from '$lib/server/auth/lucia';
+
+export const load = async ({ parent, locals }) => {
+
+	//return { portfolio: getPatents(locals.session.user) }
 
 
-export const load = async ({ parent, cookies }) => {
 	const { localsUser } = await parent();
 
-		
-	const sessionId = cookies.get(lucia.sessionCookieName);
+		// console.log('Main page: ', locals.session.userId);
+		// console.log('Main page: ', locals.session.company_id);
+	//const sessionId = cookies.get(lucia.sessionCookieName);
 
 	if (!localsUser) {
 		redirect(302, '/login');

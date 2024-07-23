@@ -19,7 +19,7 @@
 
 </script>
 
-	<section>
+	<div>
 		
 		{#if form?.error}
 			<Notice message={form.error} type="error" />
@@ -27,16 +27,16 @@
 
 		{#if running}
 			<div class="spinner-wrapper">
-				<span aria-busy="true">Deleting user { user.lastName ? user.lastName : '' }...</span>
+				<span aria-busy="true">Deleting user {user.lastName}...</span>
 			</div>
 		{/if}
 		
 		<div class="actions">
 			<article>
 		
-				<!-- <legend>
+				<legend>
 					<h2>Edit : {user.firstName + ' ' + user.lastName}</h2>
-				</legend> -->
+				</legend>
 		
 				<form action="?/updateUser" method="post" use:enhance>
 					<fieldset>
@@ -100,8 +100,10 @@
 		
 					<button type="submit">Save</button>
 				</form>
-							<form
-				action="?/deleteUser"
+			</article>
+
+			<!-- <form
+				action="?/deleteBook"
 				method="post"
 				use:enhance={() => {
 					running = true;
@@ -113,12 +115,9 @@
 				}}
 			>
 				<button class="contrast action">Delete</button>
-			</form>
-			</article>
-
+			</form> -->
 		</div>
-
-	</section>
+	</div>
 
 
 
@@ -168,3 +167,17 @@ setUsersCompany, -->
 		margin: 5px;
 	}
 </style>
+
+<!-- <script lang="ts">
+	import { getPhoneNumView } from '$lib/components/formats';
+
+	export let data;
+
+</script>
+
+<h3>Company Info</h3>
+
+	<h2>Name : {data.name}</h2>
+	<div>{data.address}</div>
+	<div>{data.city}, {data.state}. {data.zip}</div>
+	<div>{getPhoneNumView(data.phoneNumber)}</div> -->

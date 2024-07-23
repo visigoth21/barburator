@@ -13,7 +13,11 @@ export const getReadableDate = ({ date }: GetReadableDateParams) => {
 };
 
 export const getPhoneNumView = (pNum: string) => {
-    return '(' + pNum.slice(0, 3) + ') ' + pNum.slice(3, 6) + '-' + pNum.slice(6, 10);
+    if (pNum.length < 10) {
+        return pNum;
+    } else {
+        return '(' + pNum.slice(0, 3) + ') ' + pNum.slice(3, 6) + '-' + pNum.slice(6, 10);    
+    }
 };
 
 

@@ -89,23 +89,23 @@ const sessions = sqliteTable('sessions', {
 	company_id: text('company_id')
 });
 
-// const books = sqliteTable('books', {
-// 	...timestamp,
-// 	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
-// 	publicationDate: integer('publication_date', { mode: 'timestamp' }).notNull(),
-// 	title: text('title').notNull(),
-// 	author: text('author').notNull(),
-// 	isbn: integer('isbn').unique()
-// });
+const books = sqliteTable('books', {
+	...timestamp,
+	id: text('id').primaryKey().notNull().$defaultFn(() => generateRandomId()),
+	publicationDate: integer('publication_date', { mode: 'timestamp' }).notNull(),
+	title: text('title').notNull(),
+	author: text('author').notNull(),
+	isbn: integer('isbn').unique()
+});
 
-// type InsertBookParams = typeof books.$inferInsert;
+type InsertBookParams = typeof books.$inferInsert;
 type InsertUserParams = typeof users.$inferInsert;
 type InsertCompanyParams = typeof companies.$inferInsert;
 type InsertSessionsParams = typeof sessions.$inferInsert;
 
 export {
-	// books,
-	// type InsertBookParams,
+	books,
+	type InsertBookParams,
 	sessions,
 	users,
 	companies,

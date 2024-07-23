@@ -1,8 +1,9 @@
 import { db } from '$lib/server/db/client';
 import { users, type InsertUserParams, companies, sessions } from '$lib/server/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { desc, eq, and } from 'drizzle-orm';
 
 const sysDate = () => new Date();
+
 
 const getCompanyIdBySessionId = async (sessionId: string) => {
 	const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
@@ -24,6 +25,17 @@ const deleteUserById = async (id: string) => {
 
 const getAllUsers = async (sessionId: string) => { //sessionId: string
 	const company = await getCompanyIdBySessionId(sessionId);
+	return await db.select().from(users).where(eq(users.company_id, company)).orderBy(desc(users.sysAdmin), desc(users.lastName));
+};
+
+
+const getActiveCompanyUsers = async (company: string) => { //sessionId: string
+	//const company = await getCompanyIdBySessionId(sessionId);
+	return await db.select().from(users).where(and(eq(users.company_id, company),eq(users.active, true))).orderBy(desc(users.sysAdmin), desc(users.lastName));
+};
+
+const getCompanyUsers = async (company: string) => { //sessionId: string
+	//const company = await getCompanyIdBySessionId(sessionId);
 	return await db.select().from(users).where(eq(users.company_id, company)).orderBy(desc(users.sysAdmin), desc(users.lastName));
 };
 
@@ -76,5 +88,7 @@ export {
 	level2Admin,
 	customer,
 	setUsersCompany,
-	getCompanyIdBySessionId
+	getCompanyIdBySessionId,
+	getCompanyUsers,
+	getActiveCompanyUsers
 };

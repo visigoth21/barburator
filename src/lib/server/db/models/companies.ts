@@ -10,8 +10,8 @@ const getCompanyById = async (id: string) => {
 };
 
 const getCompanyBySessionId = async (sessionId: string) => {
-	return await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
-	//return sessionCompanyId.company_id;
+    const sessionCompanyId = await db.select().from(sessions).where(eq(sessions.id, sessionId)).get();
+    return await db.select().from(companies).where(eq(companies.id, sessionCompanyId.company_id)).get();
 };
 
 const getCompanyIdBySessionId = async (sessionId: string) => {
