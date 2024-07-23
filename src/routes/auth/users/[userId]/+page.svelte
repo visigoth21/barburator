@@ -27,7 +27,7 @@
 
 		{#if running}
 			<div class="spinner-wrapper">
-				<span aria-busy="true">Deleting user { user.lastName ? user.lastName : '' }...</span>
+				<span aria-busy="true">Deleting user { user.lastName }...</span>
 			</div>
 		{/if}
 		
@@ -100,7 +100,7 @@
 		
 					<button type="submit">Save</button>
 				</form>
-							<form
+				<form
 				action="?/deleteUser"
 				method="post"
 				use:enhance={() => {
