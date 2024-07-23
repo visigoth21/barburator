@@ -1,6 +1,6 @@
 // src/routes/books/add/+page.server.ts
 
-import { createNewBook } from '$lib/server/db/books';
+import { createNewBook } from '$lib/server/db/models/books';
 import { generateRandomId } from '$lib/server/utils';
 import { fail } from '@sveltejs/kit';
 
